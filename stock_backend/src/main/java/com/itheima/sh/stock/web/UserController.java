@@ -1,12 +1,13 @@
 package com.itheima.sh.stock.web;
 
 import com.itheima.sh.stock.pojo.entity.SysUser;
+import com.itheima.sh.stock.pojo.vo.LoginReqVo;
+import com.itheima.sh.stock.pojo.vo.LoginRespVo;
+import com.itheima.sh.stock.pojo.vo.R;
 import com.itheima.sh.stock.service.UserService;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author by itheima
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 //@RequestMapping注解是一个用来处理请求地址映射的注解
 @RequestMapping("/api")
+@Log
 public class UserController {
 
     @Autowired
@@ -35,8 +37,18 @@ public class UserController {
      *  后面加小括号，但是书写小括号加标识符也可以即@PathVariable("userName")
       * @return
       */
+
     @GetMapping("/{userName}")
     public SysUser getUserByUserName(@PathVariable("userName") String userName){
+        log.info("用户访问userName"+userName);
         return userService.getUserByUserName(userName);
+    }
+    @PostMapping("/login")
+    public R<LoginRespVo> login(@RequestBody LoginReqVo vo){
+        //调用业务层方法将前端请求对象作为参数传递，接收后端响应的对象
+        log.info("访问"+vo);
+        R<LoginRespVo> r= userService.login(vo);
+        log.info("返回数据r:"+r);
+        return r;
     }
 }

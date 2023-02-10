@@ -1,6 +1,9 @@
 package com.itheima.sh.stock.service;
 
 import com.itheima.sh.stock.pojo.entity.SysUser;
+import com.itheima.sh.stock.pojo.vo.LoginReqVo;
+import com.itheima.sh.stock.pojo.vo.LoginRespVo;
+import com.itheima.sh.stock.pojo.vo.R;
 
 /**
  * @author by itheima
@@ -15,4 +18,6 @@ public interface UserService {
      * @return
      */
     SysUser getUserByUserName(String userName);
+
+    R<LoginRespVo> login(LoginReqVo vo);
 }

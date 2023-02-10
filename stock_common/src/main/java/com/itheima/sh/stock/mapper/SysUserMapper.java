@@ -1,5 +1,6 @@
 package com.itheima.sh.stock.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.itheima.sh.stock.pojo.entity.SysUser;
 
@@ -9,6 +10,7 @@ import com.itheima.sh.stock.pojo.entity.SysUser;
 * @createDate 2023-02-07 21:03:54
 * @Entity theima.sh.stock.pojo.entity.SysUser
 */
+@Mapper
 public interface SysUserMapper {
 
     int deleteByPrimaryKey(Long id);
